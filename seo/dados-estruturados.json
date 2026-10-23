@@ -1,0 +1,76 @@
+{
+  "name": "Carina Pessôa Advogada",
+  "description": "Escritório de advocacia com atuação em Direito Previdenciário, Trabalhista, Cível, Consumidor, Tributário e Família, atendimento em quatro unidades no Rio de Janeiro e online em todo o Brasil.",
+  "phone": "+5521990744606",
+  "instagram": "https://www.instagram.com/carinarpessoa.adv/",
+  "areas": [
+    "Direito Previdenciário",
+    "Direito Trabalhista",
+    "Direito Cível",
+    "Direito do Consumidor",
+    "Direito Tributário",
+    "Direito de Família"
+  ],
+  "locations": [
+    {
+      "name": "Belford Roxo",
+      "phone": "+5521990744606",
+      "street": "Rua Travessa Ferroviária, 100, Loja – Centro",
+      "city": "Belford Roxo"
+    },
+    {
+      "name": "Campos dos Goytacazes",
+      "phone": "+5522998911078",
+      "street": "Rua Dr. Oliveira Botelho, 264 – Centro",
+      "city": "Campos dos Goytacazes"
+    },
+    {
+      "name": "Araruama",
+      "phone": "+5522998747575",
+      "street": "Rodovia Amaral Peixoto, km 85, nº 150, Loja 01 – Centro",
+      "city": "Araruama"
+    },
+    {
+      "name": "Barra da Tijuca",
+      "phone": "+5522995774845",
+      "landline": "+552132689220",
+      "street": "Av. Armando Lombardi, 505, 2º andar, sala 201",
+      "city": "Rio de Janeiro",
+      "district": "Barra da Tijuca"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Posso ser atendido 100% online?",
+      "answer": "Sim. O escritório oferece atendimento online para pessoas de diferentes regiões do Brasil. A possibilidade e a forma do atendimento são combinadas no primeiro contato."
+    },
+    {
+      "question": "Como funciona o primeiro contato?",
+      "answer": "Você pode entrar em contato pelo WhatsApp oficial, explicar brevemente sua situação e receber orientações sobre os próximos passos e documentos que podem ser necessários."
+    },
+    {
+      "question": "O que são valores retroativos do INSS?",
+      "answer": "São valores que, em determinadas situações, podem ser devidos por períodos anteriores. A existência e o cálculo dependem da data aplicável e da análise de cada benefício."
+    },
+    {
+      "question": "Existe prazo para pedir valores atrasados?",
+      "answer": "Podem existir prazos de prescrição e decadência, conforme a situação. Por isso, é importante avaliar as datas e os documentos do seu caso com orientação profissional."
+    },
+    {
+      "question": "Meu benefício foi negado. O que posso fazer?",
+      "answer": "O motivo do indeferimento e os documentos precisam ser analisados. Dependendo do caso, pode ser possível apresentar recurso ou adotar outras medidas cabíveis."
+    },
+    {
+      "question": "Quem pode ter direito ao BPC/LOAS?",
+      "answer": "O BPC é destinado, mediante requisitos legais, a idosos com 65 anos ou mais e a pessoas com deficiência em situação de vulnerabilidade. A avaliação envolve critérios específicos de cada caso."
+    },
+    {
+      "question": "Aposentado pode ter isenção de Imposto de Renda?",
+      "answer": "Em algumas hipóteses previstas em lei, aposentados e pensionistas podem ter direito à isenção sobre rendimentos determinados. É preciso conferir o enquadramento legal e a documentação."
+    },
+    {
+      "question": "Quais documentos devo reunir?",
+      "answer": "Normalmente são úteis documentos pessoais, comprovantes, comunicações do INSS e registros relacionados à solicitação. A lista específica é indicada conforme o seu caso."
+    }
+  ]
+}
