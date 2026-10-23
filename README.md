@@ -1,4 +1,4 @@
-# Carina Pessôa — landing page editorial (versão 4 — otimização de scroll)
+# Carina Pessôa — Landing page editorial (V9 — Responsividade)
 
 Projeto em HTML, CSS e JavaScript. Conteúdo de quatro unidades; GSAP, ScrollTrigger, DrawSVG, Lenis, menu responsivo e FAQ mantidos.
 
@@ -23,7 +23,7 @@ Rode `python -m http.server 8080` nesta pasta e acesse `http://localhost:8080`. 
 
 - `index.html` — HTML, metadados, JSON-LD, conteúdo
 - `css/style.css` — estilo responsivo
-- `js/main.js` — preloader, scroll, navbar e interações
+- `js/main.js` — scroll horizontal, animação da hero, navbar e interações
 - `assets/img/` — fotografias e posts fornecidos
 - `assets/svg/` — logotipos
 
@@ -40,7 +40,7 @@ Publicação jurídica: verifique inscrição profissional e textos legais antes
 
 ## SEO e Google Search Console
 
-Leia `SEO-GOOGLE-SEARCH-CONSOLE.md`. Antes de publicar, configure o domínio real:
+Leia `SEO-GOOGLE-SEARCH-CONSOLE.md`. Quando definir o domínio definitivo, configure a URL real:
 
 ```bash
 node scripts/configurar-seo.mjs https://SEU-DOMINIO.com.br
@@ -48,3 +48,13 @@ node scripts/verificar-seo.mjs
 ```
 
 **O domínio definitivo ainda não foi informado**; o arquivo distribuído inicialmente usa uma URL de exemplo `.invalid` e precisa desse passo para ter sitemap/canonical corretos.
+
+## Versão 9 — responsividade e interações
+
+- Até **900 px**, o capítulo **Serviços** passa a ter **scroll horizontal vinculado à rolagem vertical**: painel fixo (`position: sticky`), contador e barra de progresso, com cards dimensionados para a largura do aparelho. O efeito foi implementado com `requestAnimationFrame`, sem um segundo `pin` do GSAP, para evitar conflito com gestos touch e Lenis.
+- No desktop acima de 900 px, o `ScrollTrigger` com `pin` e `scrub` original continua. Em navegadores sem JavaScript ou com **redução de movimento** ativa, os cards podem ser lidos em sequência vertical.
+- A seção **Atendimento** recebeu correções de `min-width`, grid e tamanho tipográfico para impedir cortes no título e nos passos, inclusive em larguras a partir de 320 px.
+- As demais seções tiveram reflow corrigido em larguras pequenas, evitando rolagem horizontal indesejada na página.
+- Links internos, botões de menu e FAQ, botões de WhatsApp e endereços foram auditados; consulte `QA-RESPONSIVIDADE.md`.
+
+**Aviso:** antes de enviar o sitemap ao Google, substitua o domínio de exemplo `dominio-pendente.invalid` (o domínio definitivo ainda não foi fornecido).

@@ -150,7 +150,70 @@
     drawPaths($$('.hero-frame [data-draw]'), null, 2);
   }
 
-  // One pinned section only. Mobile gets stacked cards with natural scroll.
+  // Mobile: vertical page scroll moves the six service cards horizontally.
+  // CSS sticky avoids ScrollTrigger pin/touch conflicts and keeps taps responsive.
+  function setupMobileServices() {
+    const mq = window.matchMedia('(max-width: 900px) and (prefers-reduced-motion: no-preference)');
+    const section = $('#servicos');
+    const viewport = $('.services-viewport', section);
+    const track = $('#servicesTrack');
+    const progress = $('#servicesProgress');
+    const current = $('#servicesCurrent');
+    const cards = $$('.service-card', track);
+    let raf = 0;
+    let distance = 0;
+    let active = false;
+
+    const update = () => {
+      raf = 0;
+      if (!active) return;
+      const remaining = Math.max(1, section.offsetHeight - viewport.offsetHeight);
+      const fraction = Math.min(1, Math.max(0, -section.getBoundingClientRect().top / remaining));
+      track.style.setProperty('--mobile-services-x', `${-(fraction * distance).toFixed(2)}px`);
+      progress.style.transform = `scaleX(${fraction})`;
+      // Derive active number from card centers, rather than approximate intervals.
+      const focusX = fraction * distance + viewport.clientWidth / 2;
+      let idx = 0;
+      let closest = Infinity;
+      for (let i = 0; i < cards.length; i++) {
+        const mid = cards[i].offsetLeft + cards[i].offsetWidth / 2;
+        const difference = Math.abs(focusX - mid);
+        if (difference < closest) { idx = i; closest = difference; }
+      }
+      current.textContent = String(idx + 1).padStart(2, '0');
+    };
+    const schedule = () => { if (active && !raf) raf = requestAnimationFrame(update); };
+    const measure = () => {
+      if (!active) return;
+      distance = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      section.style.height = `${Math.max(viewport.clientHeight, viewport.clientHeight + distance)}px`;
+      schedule();
+    };
+    const onChange = () => {
+      active = mq.matches;
+      document.documentElement.classList.toggle('mobile-horizontal-ready', active);
+      if (active) {
+        measure();
+      } else {
+        section.style.removeProperty('height');
+        track.style.removeProperty('--mobile-services-x');
+        progress.style.removeProperty('transform');
+      }
+    };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', measure, { passive: true });
+    mq.addEventListener('change', onChange);
+    // ResizeObserver catches font and viewport changes without polling.
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(measure).observe(viewport);
+      new ResizeObserver(measure).observe(track);
+    }
+    document.fonts?.ready.then(measure);
+    onChange();
+    return { measure };
+  }
+
+  // Only the desktop uses GSAP pin. Mobile uses a native sticky horizontal scene.
   function setupServices() {
     if (!motionReady) return;
     const mm = gsap.matchMedia();
@@ -192,12 +255,7 @@
         gsap.set(track, { clearProps: 'transform' });
       };
     });
-    mm.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
-      $$('.service-card').forEach(card => {
-        gsap.from(card, { y: 45, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 88%', once: true } });
-        drawPaths($$('[data-draw]', card), card, 1.1);
-      });
-    });
+
   }
 
   // All other chapters use subtle scroll-triggered entrance and one special mask reveal.
@@ -280,6 +338,7 @@
     }
   }
 
+  setupMobileServices();
   setupServices();
   setupReveals();
   startInitialSequence();

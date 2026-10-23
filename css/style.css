@@ -267,3 +267,186 @@ html.site-ready .hero-bottom{opacity:1;visibility:visible}
 
 /* SEO: heading hero semantic without changes to the editorial layout */
 h1.hero-title{margin:0;font-weight:400}
+
+
+/* V9 | Scroll horizontal responsivo: vertical no documento, horizontal nos cards.
+   A classe mobile-horizontal-ready e gerenciada pelo JS; sem JS, cards permanecem empilhados. */
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+  html.mobile-horizontal-ready .services {
+    padding: 0 !important;
+    min-height: 100svh;
+    overflow: visible;
+    background: var(--sand);
+    isolation: isolate;
+  }
+  html.mobile-horizontal-ready .services-viewport {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+    width: 100%;
+    display: block;
+    overflow: hidden !important;
+    padding-top: clamp(155px, 28svh, 225px);
+    padding-bottom: 16px;
+    scroll-snap-type: none;
+  }
+  html.mobile-horizontal-ready .services-sticky-head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: clamp(18px, 4svh, 35px) 24px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 14px;
+    align-items: start;
+    background: linear-gradient(180deg, var(--sand) 84%, rgba(233,223,213,0));
+    pointer-events: none;
+  }
+  html.mobile-horizontal-ready .services-sticky-head h2 {
+    grid-column: 1 / -1;
+    font-size: clamp(39px, 9vw, 66px);
+    margin: 0 0 8px !important;
+    line-height: .9;
+    max-width: 650px;
+  }
+  html.mobile-horizontal-ready .services-sticky-head h2 em { display: inline; }
+  html.mobile-horizontal-ready .services-sticky-head > p {
+    grid-column: 1;
+    font-size: clamp(11px, 2.7vw, 13px);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 440px;
+  }
+  html.mobile-horizontal-ready .services-counter {
+    display: flex;
+    grid-column: 2;
+    grid-row: 2;
+    align-items: end;
+    gap: 3px;
+    margin-top: 0;
+  }
+  html.mobile-horizontal-ready .services-counter strong { font-size: 43px; }
+  html.mobile-horizontal-ready .services-counter span { font-size: 14px; }
+  html.mobile-horizontal-ready .services-progress {
+    display: block;
+    grid-column: 1 / -1;
+    margin-top: 13px;
+    width: 100%;
+  }
+  html.mobile-horizontal-ready .services-hint { display: none; }
+  html.mobile-horizontal-ready .services-track {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    height: 100%;
+    width: max-content;
+    margin: 0;
+    padding: 0 16px;
+    transform: translate3d(var(--mobile-services-x, 0px),0,0) !important;
+    will-change: transform;
+  }
+  html.mobile-horizontal-ready .service-card {
+    flex: 0 0 calc(100vw - 32px);
+    width: calc(100vw - 32px);
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: clamp(18px,5vw,30px);
+    scroll-snap-align: none;
+  }
+  html.mobile-horizontal-ready .service-card-content { width: 100%; min-width: 0; }
+  html.mobile-horizontal-ready .service-card h3 {
+    font-size: clamp(43px, 11vw, 67px);
+    margin: 10px 0 12px;
+    line-height: .92;
+    overflow-wrap: anywhere;
+  }
+  html.mobile-horizontal-ready .service-card p {
+    font-size: clamp(11px, 3.1vw, 14px);
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  html.mobile-horizontal-ready .service-kicker { font-size: 10px; }
+  html.mobile-horizontal-ready .service-card a { margin-top: 13px; padding-bottom: 8px; gap: 22px; }
+  html.mobile-horizontal-ready .service-icon { width: 33%; height: 23%; top: 9%; }
+  html.mobile-horizontal-ready .service-number { font-size: clamp(76px, 23vw, 125px); }
+}
+@media (max-width: 900px) and (max-height: 680px) and (prefers-reduced-motion: no-preference) {
+  html.mobile-horizontal-ready .services-viewport { padding-top: 158px; padding-bottom: 12px; }
+  html.mobile-horizontal-ready .services-sticky-head { padding-top: 17px; }
+  html.mobile-horizontal-ready .services-sticky-head h2 { font-size: clamp(34px,8vw,48px); }
+  html.mobile-horizontal-ready .service-card h3 { font-size: clamp(37px, 9.5vw, 54px); }
+  html.mobile-horizontal-ready .service-card p { font-size: 11px; line-height: 1.43; }
+  html.mobile-horizontal-ready .service-number { font-size: 76px; }
+  html.mobile-horizontal-ready .service-icon { height: 20%; top: 4%; }
+}
+
+/* V9 | Atendimento: limites de grid, tipografia fluida e quebras seguras. */
+.care-side,.care-steps,.care-footer,.care-step,.care-step>div { min-width:0; }
+@media(max-width:900px) {
+  .care-section { grid-template-columns:minmax(0,1fr); overflow:clip; }
+  .care-side h2 { width:100%; max-width:100%; font-size:clamp(39px,7.8vw,68px); line-height: .96; overflow-wrap:break-word; }
+  .care-side p { max-width:100%; overflow-wrap:break-word; }
+  .care-step { grid-template-columns: minmax(38px,52px) minmax(0,1fr); }
+  .care-step h3,.care-step p { max-width:100%; overflow-wrap:break-word; }
+  .care-footer { min-width:0; }
+}
+@media(max-width:620px) {
+  .care-section { padding:clamp(72px,13vw,95px) 24px 80px; gap:12px; }
+  .care-side h2 { font-size:clamp(36px,9.1vw,48px); line-height: .99; letter-spacing:-.04em; margin:0 0 25px !important; }
+  .care-side p { font-size:13px; line-height:1.7; }
+  .care-step { grid-template-columns: minmax(35px,43px) minmax(0,1fr); gap:9px; }
+  .care-step h3 { font-size:clamp(26px,7vw,33px); line-height:1.06; }
+  .care-step p { font-size:12px; line-height:1.55; }
+  .care-steps { padding-left:28px; }
+  .care-footer>strong { max-width:100%; font-size:clamp(29px,8vw,36px); line-height:1.05; }
+  .large-cta { max-width:100%; min-width:0; }
+}
+@media(max-width:370px) {
+  .care-side h2 { font-size:35px; }
+  .care-step h3 { font-size:25px; }
+}
+
+/* V9: revisão final de telas compactas e grids de conteúdo. */
+.care-side h2 { overflow-wrap: break-word; }
+@media (min-width: 901px) {
+  .care-section { grid-template-columns: minmax(0, .93fr) minmax(0, 1.07fr); }
+  .care-side h2 { font-size: clamp(48px, 5.05vw, 86px); line-height: .97; }
+}
+@media (max-width: 900px) {
+  .about-section,
+  .team-layout,
+  .location-head,
+  .faq-section { grid-template-columns: minmax(0,1fr); }
+  .about-left,.about-visual,.difference-top,.difference-item,
+  .team-top,.team-roster,.location-text,.instagram-top,.faq-heading { min-width: 0; }
+  .about-left h2,.difference-top h2,.team-top h2,.location-text h2,.faq-heading h2 {
+    max-width:100%; overflow-wrap:break-word;
+  }
+}
+@media (max-width: 620px) {
+  .about-section,.difference-section,.team-section,.faq-section { max-width:100%; }
+  .difference-top,.team-top { grid-template-columns: minmax(0,1fr); }
+  .about-left h2 { font-size:clamp(51px,12.1vw,75px); }
+  .difference-top h2,.team-top h2 { font-size:clamp(52px,11.7vw,84px); }
+  .location-text h2 { font-size:clamp(52px,11.7vw,85px); }
+  .faq-heading h2 { font-size:clamp(54px,11.7vw,83px); }
+}
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+  html.mobile-horizontal-ready .services-viewport { padding-top:clamp(220px, 31svh, 280px); }
+  html.mobile-horizontal-ready .services-sticky-head { padding-top: clamp(85px, 10svh, 100px); }
+}
+@media (max-width: 900px) and (max-height: 680px) and (prefers-reduced-motion: no-preference) {
+  html.mobile-horizontal-ready .services-viewport { padding-top:210px; }
+  html.mobile-horizontal-ready .services-sticky-head { padding-top:82px; }
+}
+/* Fallback sem JS e para usuários com movimento reduzido: cards em fluxo vertical. */
+@media (max-width:900px) {
+  html:not(.mobile-horizontal-ready) .services-viewport { display:block; }
+  html:not(.mobile-horizontal-ready) .services-sticky-head { width:100%; }
+}
